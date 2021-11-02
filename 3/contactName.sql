@@ -1,0 +1,24 @@
+
+/*
+REF POINTS 
+    - CONTACT_NAME IS איש קשר 
+    - SUPPLAYERS - טבלת הספקים
+    - SUPPLAYERS.ID = מספר הספק שלנו
+    - P.SUPPLAYER_ID = מספר הספק מטבלת המוצרים 
+    - PRODUCTS = טבלת המוצרים שלנו
+*/
+-- OPTION ONE
+SELECT CONTACT_NAME 
+FROM SUPPLAYERS AS S
+JOIN PRODUCTS AS P
+    P.ID = 15155 -- THE UNIQUE KEY IN PRODUCTS
+    ON S.ID = P.SUPPLAYER_ID
+
+--- OPTION TWO 
+SELECT CONTACT_NAME 
+FROM SUPPLAYERS AS S
+WHERE S.ID = ( SELECT P.SUPPLAYER_ID 
+        FROM SUPPLAYERS
+        WHERE P.ID = 15155 -- THE UNIQUE KEY IN PRODUCTS
+        )
+    
